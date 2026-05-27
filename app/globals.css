@@ -1,26 +1,463 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette */
+  --color-cream: #f5efe4;
+  --color-cream-soft: #faf6ed;
+  --color-cream-deep: #ece4d3;
+  --color-surface: #ffffff;
+
+  --color-forest: #143a2f;
+  --color-forest-deep: #0e2a22;
+  --color-forest-soft: #1d4d40;
+
+  --color-gold: #b89968;
+  --color-gold-soft: #d4b98a;
+
+  --color-ink: #14211c;
+  --color-ink-soft: #2a3a33;
+  --color-muted: #6a766f;
+  --color-border: #e2d8c6;
+  --color-border-soft: #ede4d2;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-ink);
+
+  --color-cream: var(--color-cream);
+  --color-cream-soft: var(--color-cream-soft);
+  --color-cream-deep: var(--color-cream-deep);
+  --color-surface: var(--color-surface);
+
+  --color-forest: var(--color-forest);
+  --color-forest-deep: var(--color-forest-deep);
+  --color-forest-soft: var(--color-forest-soft);
+
+  --color-gold: var(--color-gold);
+  --color-gold-soft: var(--color-gold-soft);
+
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-border-soft: var(--color-border-soft);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html,
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-forest);
+  color: var(--color-cream-soft);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Step transitions for onboarding-style flows */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-fade-up {
+  animation: fade-up 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Hero entrance — gentle, premium */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-rise {
+  animation: hero-rise 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Subtle floating motion for hero accents */
+@keyframes float-y {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.animate-float-y {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+@keyframes float-y-delay {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+.animate-float-y-delay {
+  animation: float-y-delay 7s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+/* Gentle pulse for live indicators */
+@keyframes soft-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.animate-soft-pulse {
+  animation: soft-pulse 2.4s ease-in-out infinite;
+}
+
+/* ========================================
+   3D page + step transitions
+   ======================================== */
+
+/* Subtle 3D page enter — fires on every route change via template.tsx */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: perspective(1600px) translateZ(-40px) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1600px) translateZ(0) translateY(0);
+  }
+}
+.page-transition {
+  animation: page-enter 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: top center;
+}
+
+/* 3D step entrance for multi-step flows (onboarding etc) */
+@keyframes step-enter {
+  from {
+    opacity: 0;
+    transform: perspective(1400px) translateZ(-40px) translateY(14px) rotateX(5deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1400px) translateZ(0) translateY(0) rotateX(0deg);
+  }
+}
+.animate-step-enter {
+  animation: step-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: 50% 100%;
+}
+
+/* ========================================
+   3D depth + tilt foundations
+   ======================================== */
+
+/* Press-on-active for primary buttons */
+.btn-press {
+  transition-property: transform, box-shadow, background-color, border-color;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.btn-press:active {
+  transform: translateY(1px) scale(0.985);
+  transition-duration: 90ms;
+}
+
+/* Tilt container — wrapping element keeps the 3D scene */
+.tilt-scene {
+  perspective: 1200px;
+  perspective-origin: center;
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Elements that float "above" the card surface use translateZ */
+.depth-1 {
+  transform: translateZ(20px);
+}
+.depth-2 {
+  transform: translateZ(40px);
+}
+.depth-3 {
+  transform: translateZ(60px);
+}
+
+/* Subtle floating shadow that grows on hover */
+.lift-shadow {
+  transition: box-shadow 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ========================================
+   Live demo scene animations
+   ======================================== */
+
+@keyframes demo-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes demo-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes demo-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes demo-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes demo-qr-draw {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+@keyframes demo-toggle-on {
+  0% {
+    background: var(--color-cream-deep);
+  }
+  100% {
+    background: var(--color-forest);
+  }
+}
+@keyframes demo-thumb-slide {
+  0% {
+    left: 2px;
+  }
+  100% {
+    left: calc(100% - 22px);
+  }
+}
+@keyframes demo-counter-tick {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(-1.2em);
+  }
+  20% {
+    transform: translateY(-2.4em);
+  }
+  30% {
+    transform: translateY(-3.6em);
+  }
+  100% {
+    transform: translateY(-3.6em);
+  }
+}
+
+/* Scene container — always animates in on mount (we re-key on change) */
+.scene-enter {
+  animation: demo-scale-in 580ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Stepped reveal helpers */
+.demo-step {
+  animation: demo-rise 540ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.demo-step-1 {
+  animation-delay: 220ms;
+}
+.demo-step-2 {
+  animation-delay: 580ms;
+}
+.demo-step-3 {
+  animation-delay: 980ms;
+}
+.demo-step-4 {
+  animation-delay: 1400ms;
+}
+.demo-step-5 {
+  animation-delay: 1900ms;
+}
+.demo-step-6 {
+  animation-delay: 2400ms;
+}
+
+/* Scroll reveal base */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Long-form legal / docs typography */
+.legal-prose section {
+  scroll-margin-top: 110px;
+  padding-top: 3rem;
+}
+.legal-prose section:first-child {
+  padding-top: 0;
+}
+.legal-prose h2 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+.legal-prose h3 {
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.legal-prose p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--color-ink-soft);
+  margin-top: 0.85rem;
+}
+.legal-prose ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.85rem;
+}
+.legal-prose ul li {
+  position: relative;
+  padding-left: 1.35rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+  margin-bottom: 0.45rem;
+}
+.legal-prose ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.7em;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--color-forest);
+}
+.legal-prose strong {
+  color: var(--color-ink);
+  font-weight: 500;
+}
+.legal-prose a {
+  color: var(--color-forest);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.legal-prose a:hover {
+  color: var(--color-forest-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-rise,
+  .animate-pop-in,
+  .animate-fade-up,
+  .animate-float-y,
+  .animate-float-y-delay,
+  .animate-soft-pulse {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .tilt-card,
+  .btn-press {
+    transition: none !important;
+    transform: none !important;
+  }
+  .page-transition,
+  .animate-step-enter,
+  .scene-enter,
+  .demo-step {
+    animation: none !important;
+  }
 }
