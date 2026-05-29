@@ -12,32 +12,32 @@ const faqs: FaqItem[] = [
   {
     question: "What exactly is Wavly?",
     answer:
-      "Wavly is an AI-powered WhatsApp automation tool built for small businesses in India. It handles your repetitive WhatsApp work — replying to common questions, booking appointments, sending reminders, and following up on payments — so you spend less time on your phone and more time growing your business.",
+      "Wavly is an AI-powered Telegram automation tool built for small businesses in India. It handles your repetitive Telegram work — replying to common questions, booking appointments, sending reminders, and following up on payments — so you spend less time on your phone and more time growing your business.",
   },
   {
-    question: "How does Wavly work with my WhatsApp?",
+    question: "How does Wavly work with my Telegram?",
     answer:
-      "You connect your business WhatsApp number to Wavly in about 2 minutes. From then on, Wavly receives your messages, replies using the automations you set up, and shows every conversation in one calm dashboard. No new app for your customers — they keep chatting on WhatsApp like always.",
+      "You connect your business Telegram bot to Wavly in about 2 minutes. From then on, Wavly receives your messages, replies using the automations you set up, and shows every conversation in one calm dashboard. No new app for your customers — they keep chatting on Telegram like always.",
   },
   {
-    question: "Is Wavly safe to use with my WhatsApp account?",
+    question: "Is Wavly safe to use with my Telegram account?",
     answer:
-      "Yes. Wavly connects through the official WhatsApp Business API from Meta — the same secure infrastructure used by the world's biggest brands. Your account is never at risk of being banned, and your customers' messages are end-to-end encrypted in transit. We never read, sell or share your data.",
+      "Yes. Wavly connects through the official Telegram Bot API — the same secure infrastructure used by the world's biggest brands. Your account is never at risk of being banned, and your customers' messages are end-to-end encrypted in transit. We never read, sell or share your data.",
   },
   {
     question: "Do I need any technical knowledge to use Wavly?",
     answer:
-      "Not at all. Wavly is built for business owners, not developers. Setting up automations is as simple as picking from templates or typing a few sentences. If you can use WhatsApp, you can use Wavly.",
+      "Not at all. Wavly is built for business owners, not developers. Setting up automations is as simple as picking from templates or typing a few sentences. If you can use Telegram, you can use Wavly.",
   },
   {
     question: "How long does it take to set up?",
     answer:
-      "Most users are fully set up in under 10 minutes. Connect your number, pick your industry, choose 1–2 automations to start with, and you're live. Our onboarding guides you step by step, and you can always add more automations later.",
+      "Most users are fully set up in under 10 minutes. Connect your bot, pick your industry, choose 1–2 automations to start with, and you're live. Our onboarding guides you step by step, and you can always add more automations later.",
   },
   {
     question: "What kind of businesses use Wavly?",
     answer:
-      "Wavly is built for small service-based businesses that rely heavily on WhatsApp — coaches and consultants, clinics and doctors, salons and spas, tuition teachers and coaching classes, and small D2C shops. If you spend hours every day replying to customers on WhatsApp, Wavly is for you.",
+      "Wavly is built for small service-based businesses that rely heavily on Telegram — coaches and consultants, clinics and doctors, salons and spas, tuition teachers and coaching classes, and small D2C shops. If you spend hours every day replying to customers on Telegram, Wavly is for you.",
   },
   {
     question: "Can I cancel my subscription anytime?",

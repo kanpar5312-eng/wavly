@@ -12,7 +12,7 @@ const toc = [
   { id: "account", label: "Account Registration" },
   { id: "subscription", label: "Subscription & Payments" },
   { id: "acceptable-use", label: "Acceptable Use" },
-  { id: "whatsapp-policies", label: "WhatsApp Business Policies" },
+  { id: "telegram-policies", label: "Telegram Policies" },
   { id: "ip", label: "Intellectual Property" },
   { id: "termination", label: "Termination" },
   { id: "liability", label: "Limitation of Liability" },
@@ -44,7 +44,7 @@ export default function TermsPage() {
       <section id="service">
         <h2>Description of Service</h2>
         <p>
-          Wavly provides an AI-powered platform for automating WhatsApp
+          Wavly provides an AI-powered platform for automating Telegram
           business communications. Features include smart auto-replies,
           appointment booking, customer management, payment reminders,
           centralized inbox, and analytics. The Service is offered on a
@@ -121,7 +121,7 @@ export default function TermsPage() {
         <ul>
           <li>
             Send spam, unsolicited messages, or content that violates
-            WhatsApp&apos;s policies
+            Telegram&apos;s policies
           </li>
           <li>Engage in fraud, deception, or illegal activity</li>
           <li>
@@ -138,24 +138,24 @@ export default function TermsPage() {
         </p>
       </section>
 
-      <section id="whatsapp-policies">
-        <h2>WhatsApp Business Policies</h2>
+      <section id="telegram-policies">
+        <h2>Telegram Policies</h2>
         <p>
-          Because Wavly operates through Meta&apos;s WhatsApp Business API,
+          Because Wavly operates through Telegram&apos;s Bot API,
           your usage must also comply with:
         </p>
         <ul>
           <li>
-            <strong>Meta&apos;s WhatsApp Business Messaging Policy</strong>
+            <strong>Telegram&apos;s Bot Platform rules</strong>
           </li>
           <li>
-            <strong>WhatsApp Commerce Policy</strong>
+            <strong>Telegram Bot Platform terms</strong>
           </li>
           <li>TRAI regulations and Indian telecommunications law</li>
         </ul>
         <p>
           You are solely responsible for the content of messages sent through
-          Wavly. We may suspend service if your usage risks our WhatsApp
+          Wavly. We may suspend service if your usage risks our Telegram
           Business API access.
         </p>
       </section>
@@ -218,7 +218,7 @@ export default function TermsPage() {
             months preceding the claim
           </li>
           <li>
-            We are not responsible for losses caused by WhatsApp/Meta&apos;s
+            We are not responsible for losses caused by Telegram&apos;s
             actions, third-party services, or events beyond our control
           </li>
         </ul>

@@ -10,7 +10,7 @@ const toc = [
   { id: "introduction", label: "Introduction" },
   { id: "information-we-collect", label: "Information We Collect" },
   { id: "how-we-use", label: "How We Use Your Information" },
-  { id: "whatsapp-data", label: "WhatsApp Data Handling" },
+  { id: "telegram-data", label: "Telegram Data Handling" },
   { id: "cookies", label: "Cookies & Tracking" },
   { id: "security", label: "Data Security" },
   { id: "sharing", label: "Sharing Your Data" },
@@ -34,7 +34,7 @@ export default function PrivacyPage() {
         <p>
           This Privacy Policy explains how Wavly (&ldquo;we&rdquo;,
           &ldquo;us&rdquo;, &ldquo;our&rdquo;) collects, uses, stores, and
-          protects your information when you use our AI-powered WhatsApp
+          protects your information when you use our AI-powered Telegram
           automation platform (the &ldquo;Service&rdquo;). By using Wavly, you
           agree to the practices described here.
         </p>
@@ -59,12 +59,12 @@ export default function PrivacyPage() {
             partners — we do not store full card details
           </li>
           <li>
-            <strong>WhatsApp Business details:</strong> business number and
-            information required to connect to the Meta WhatsApp Business API
+            <strong>Telegram details:</strong> business number and
+            information required to connect to the the Telegram Bot API
           </li>
           <li>
             <strong>Customer chat data:</strong> messages and contacts that
-            flow through your WhatsApp Business account via Wavly
+            flow through your Telegram bot via Wavly
           </li>
         </ul>
         <h3>Information we collect automatically</h3>
@@ -92,27 +92,27 @@ export default function PrivacyPage() {
         </ul>
       </section>
 
-      <section id="whatsapp-data">
-        <h2>WhatsApp Data Handling</h2>
+      <section id="telegram-data">
+        <h2>Telegram Data Handling</h2>
         <p>
-          Wavly connects to your WhatsApp Business account through Meta&apos;s
-          official WhatsApp Business API. We follow strict practices around
+          Wavly connects to your Telegram bot through Telegram&apos;s
+          official Telegram Bot API. We follow strict practices around
           your messaging data:
         </p>
         <ul>
           <li>
             We only access messages sent to or from{" "}
             <strong>your business number</strong> — never your personal
-            WhatsApp account
+            Telegram account
           </li>
           <li>All message data is encrypted in transit (TLS 1.3) and at rest (AES-256)</li>
           <li>
-            We comply with Meta&apos;s{" "}
-            <strong>WhatsApp Business Messaging Policy</strong> and{" "}
+            We comply with Telegram&apos;s{" "}
+            <strong>Telegram Bot Platform rules</strong> and{" "}
             <strong>Commerce Policy</strong>
           </li>
           <li>
-            You can disconnect your number at any time. Related message data
+            You can disconnect your bot at any time. Related message data
             is deleted within 30 days of disconnection.
           </li>
           <li>We do not sell, rent or share customer chat data with anyone</li>

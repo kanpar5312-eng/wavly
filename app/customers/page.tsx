@@ -612,7 +612,7 @@ export default function CustomersPage() {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-forest)] opacity-70" />
                     <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-forest)]" />
                   </span>
-                  Auto-syncing with WhatsApp
+                  Auto-syncing with Telegram
                 </div>
               </div>
             </div>

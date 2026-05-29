@@ -661,7 +661,7 @@ export default function InboxPage() {
                       <kbd className="rounded border border-[var(--color-border-soft)] bg-[var(--color-cream-soft)] px-1 py-0.5 text-[9px] font-medium">
                         Enter
                       </kbd>{" "}
-                      to send · all replies sync to WhatsApp
+                      to send · all replies sync to Telegram
                     </span>
                     <span className="hidden sm:flex items-center gap-1">
                       <SparkleMini />

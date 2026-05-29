@@ -7,8 +7,8 @@ const SCENES = [
   {
     id: 1,
     eyebrow: "Step 1 · Setup",
-    title: "Connect your WhatsApp",
-    caption: "Scan the QR. Linked in 30 seconds.",
+    title: "Connect your Telegram bot",
+    caption: "Paste your bot token. Linked in seconds.",
     duration: 5500,
   },
   {
@@ -111,6 +111,8 @@ export function LiveDemo() {
         className="pointer-events-none absolute inset-0 -z-10"
       >
         <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[520px] w-[820px] rounded-full bg-[var(--color-gold-soft)]/20 blur-3xl" />
+        <div className="absolute top-24 right-[12%] h-[360px] w-[360px] rounded-full bg-[var(--color-tg)]/12 blur-3xl" />
+        <div className="absolute bottom-0 left-[10%] h-[300px] w-[300px] rounded-full bg-[var(--color-tg-soft)]/10 blur-3xl" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
@@ -135,7 +137,7 @@ export function LiveDemo() {
           </Reveal>
           <Reveal delay={160}>
             <p className="mt-5 text-base text-[var(--color-ink-soft)] leading-relaxed">
-              From scanning a QR to closing your laptop — the full flow, in
+              From pasting a bot token to closing your laptop — the full flow, in
               one continuous loop.
             </p>
           </Reveal>
@@ -146,12 +148,12 @@ export function LiveDemo() {
           <div className="mt-12 relative mx-auto max-w-5xl">
             <div
               aria-hidden
-              className="absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-[var(--color-gold-soft)]/25 via-transparent to-[var(--color-forest-soft)]/15 blur-3xl"
+              className="absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-[var(--color-gold-soft)]/25 via-[var(--color-tg)]/12 to-[var(--color-forest-soft)]/15 blur-3xl"
             />
 
-            <div className="relative rounded-3xl border border-[var(--color-border)] bg-[var(--color-cream-soft)] shadow-[0_40px_100px_-30px_rgba(20,33,28,0.45)] overflow-hidden">
+            <div className="relative rounded-3xl border border-[var(--color-tg)]/25 bg-[var(--color-cream-soft)] shadow-[0_40px_100px_-30px_rgba(20,33,28,0.45)] ring-1 ring-[var(--color-tg)]/[0.06] overflow-hidden">
               {/* Window chrome */}
-              <div className="flex items-center justify-between gap-3 border-b border-[var(--color-border-soft)] px-4 py-3 bg-gradient-to-b from-[var(--color-cream-soft)] to-[var(--color-cream)]">
+              <div className="flex items-center justify-between gap-3 border-b border-[var(--color-tg)]/15 px-4 py-3 bg-gradient-to-b from-[var(--color-tg-tint)] to-[var(--color-cream)]">
                 <div className="flex items-center gap-2">
                   <span className="h-3 w-3 rounded-full bg-[#e8c4b4]" />
                   <span className="h-3 w-3 rounded-full bg-[#e8dab4]" />
@@ -172,10 +174,10 @@ export function LiveDemo() {
                   </svg>
                   app.wavly.in
                 </div>
-                <div className="inline-flex items-center gap-1 rounded-full bg-[var(--color-forest)]/[0.08] px-2.5 py-0.5 text-[10px] font-medium text-[var(--color-forest)]">
+                <div className="inline-flex items-center gap-1 rounded-full bg-[var(--color-tg)]/12 px-2.5 py-0.5 text-[10px] font-medium text-[var(--color-tg-deep)]">
                   <span className="relative flex h-1.5 w-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-forest)] opacity-70" />
-                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-forest)]" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-tg)] opacity-70" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-tg)]" />
                   </span>
                   LIVE
                 </div>
@@ -353,20 +355,20 @@ function renderScene(index: number) {
   }
 }
 
-/* Scene 1: Connect WhatsApp */
+/* Scene 1: Connect Telegram bot */
 function SceneConnect() {
   return (
-    <div className="h-full flex items-center justify-center gap-8 lg:gap-16">
+    <div className="h-full flex items-center justify-center gap-8 lg:gap-14">
       {/* Steps text */}
       <div className="hidden md:flex flex-col gap-4 max-w-xs">
         <div className="demo-step demo-step-1 flex items-start gap-3">
           <StepDot n={1} />
           <div>
             <div className="text-sm font-medium text-[var(--color-ink)]">
-              Open WhatsApp Business
+              Open @BotFather
             </div>
             <div className="text-xs text-[var(--color-muted)]">
-              Settings → Linked Devices
+              Telegram&apos;s official bot maker
             </div>
           </div>
         </div>
@@ -374,10 +376,10 @@ function SceneConnect() {
           <StepDot n={2} />
           <div>
             <div className="text-sm font-medium text-[var(--color-ink)]">
-              Scan the QR code
+              Send /newbot
             </div>
             <div className="text-xs text-[var(--color-muted)]">
-              Hold steady for a second
+              Copy the token it gives you
             </div>
           </div>
         </div>
@@ -385,7 +387,7 @@ function SceneConnect() {
           <StepDot n={3} accent />
           <div>
             <div className="text-sm font-medium text-[var(--color-forest)]">
-              Linked instantly
+              Paste it into Wavly
             </div>
             <div className="text-xs text-[var(--color-muted)]">
               Sync starts immediately
@@ -394,87 +396,73 @@ function SceneConnect() {
         </div>
       </div>
 
-      {/* QR card */}
+      {/* Token card */}
       <div
-        className="demo-step demo-step-1 relative"
-        style={{ animation: "demo-qr-draw 800ms cubic-bezier(0.22,1,0.36,1) both" }}
+        className="demo-step demo-step-1 relative w-full max-w-sm"
+        style={{ animation: "demo-scale-in 700ms cubic-bezier(0.22,1,0.36,1) both" }}
       >
         <div
           aria-hidden
           className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[var(--color-gold-soft)]/30 to-[var(--color-forest-soft)]/20 blur-2xl"
         />
-        <div className="relative rounded-3xl border border-[var(--color-border)] bg-white p-5 shadow-[0_22px_50px_-22px_rgba(20,33,28,0.3)]">
-          <FakeQr />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-10 w-10 rounded-xl bg-[var(--color-forest)] border-2 border-white flex items-center justify-center text-[var(--color-cream-soft)]">
-              <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
-                <path
-                  d="M3 13c2-3 4-3 6 0s4 3 6 0 4-3 6 0"
-                  stroke="currentColor"
-                  strokeWidth="2.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+        <div className="relative rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-[0_22px_50px_-22px_rgba(20,33,28,0.3)]">
+          <div className="flex items-center gap-2.5">
+            <div className="h-9 w-9 rounded-xl bg-[var(--color-forest)] text-[var(--color-cream-soft)] flex items-center justify-center">
+              <TelegramGlyph />
+            </div>
+            <div className="text-sm font-medium text-[var(--color-ink)]">
+              Connect your bot
             </div>
           </div>
-        </div>
-        {/* Connected badge */}
-        <div
-          className="demo-step absolute -bottom-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-forest)] px-3 py-1.5 text-[11px] font-medium text-[var(--color-cream-soft)] shadow-[0_10px_20px_-10px_rgba(20,58,47,0.5)]"
-          style={{ animationDelay: "3200ms" }}
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-3 w-3"
+
+          <div className="demo-step demo-step-2 mt-5">
+            <div className="text-[10px] uppercase tracking-[0.14em] text-[var(--color-muted)] font-medium">
+              Bot token
+            </div>
+            <div className="mt-1.5 rounded-xl border border-[var(--color-forest)]/30 bg-[var(--color-forest)]/[0.04] px-3 py-2.5 font-mono text-[12px] text-[var(--color-forest)] truncate">
+              7829461025:AAH8x_kPq3Rt…
+            </div>
+          </div>
+
+          <div
+            className="demo-step mt-4 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[var(--color-forest)] px-4 py-2.5 text-[12px] font-medium text-[var(--color-cream-soft)]"
+            style={{ animationDelay: "2000ms" }}
           >
-            <path d="M5 12l4 4 10-10" />
-          </svg>
-          Connected
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-3 w-3"
+            >
+              <path d="M5 12l4 4 10-10" />
+            </svg>
+            Bot connected
+          </div>
+        </div>
+
+        {/* floating connected badge */}
+        <div
+          className="demo-step absolute -bottom-3 -right-3 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-cream-soft)] border border-[var(--color-border)] px-3 py-1.5 text-[11px] font-medium text-[var(--color-forest)] shadow-[0_10px_20px_-10px_rgba(20,33,28,0.35)]"
+          style={{ animationDelay: "3000ms" }}
+        >
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-forest)] opacity-70" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-forest)]" />
+          </span>
+          @GlowSalonBot · live
         </div>
       </div>
     </div>
   );
 }
 
-function FakeQr() {
+function TelegramGlyph() {
   return (
-    <svg viewBox="0 0 100 100" className="w-44 h-44">
-      {/* corner markers */}
-      {[
-        [0, 0],
-        [70, 0],
-        [0, 70],
-      ].map(([x, y], i) => (
-        <g key={i}>
-          <rect x={x} y={y} width="30" height="30" rx="4" fill="var(--color-forest-deep)" />
-          <rect x={x + 6} y={y + 6} width="18" height="18" rx="2" fill="white" />
-          <rect x={x + 11} y={y + 11} width="8" height="8" rx="1" fill="var(--color-forest-deep)" />
-        </g>
-      ))}
-      {/* data pattern */}
-      {Array.from({ length: 40 }).map((_, i) => {
-        const x = (i * 7) % 80 + 5;
-        const y = Math.floor((i * 7) / 80) * 7 + 5;
-        if ((x < 35 && y < 35) || (x > 60 && y < 35) || (x < 35 && y > 60)) return null;
-        return (
-          <rect
-            key={`d-${i}`}
-            x={x}
-            y={y}
-            width="4"
-            height="4"
-            rx="0.5"
-            fill="var(--color-forest-deep)"
-            opacity={((i * 13) % 7) > 3 ? 0.9 : 0}
-          />
-        );
-      })}
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+      <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" />
     </svg>
   );
 }
@@ -745,7 +733,7 @@ function SceneReminder() {
         </div>
       </div>
 
-      {/* WhatsApp reminder message */}
+      {/* Telegram reminder message */}
       <div
         className="demo-step rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 shadow-[0_22px_50px_-22px_rgba(20,33,28,0.22)]"
         style={{ animationDelay: "1400ms" }}

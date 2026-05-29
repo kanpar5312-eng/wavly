@@ -9,7 +9,7 @@ export const metadata = {
 const toc = [
   { id: "general", label: "General Disclaimer" },
   { id: "no-guarantees", label: "No Guarantees" },
-  { id: "whatsapp", label: "WhatsApp Service Disclaimer" },
+  { id: "telegram", label: "Telegram Service Disclaimer" },
   { id: "ai", label: "AI Disclaimer" },
   { id: "third-party", label: "Third-Party Services" },
   { id: "user-responsibility", label: "User Responsibility" },
@@ -59,25 +59,25 @@ export default function DisclaimerPage() {
         </p>
       </section>
 
-      <section id="whatsapp">
-        <h2>WhatsApp Service Disclaimer</h2>
+      <section id="telegram">
+        <h2>Telegram Service Disclaimer</h2>
         <p>
-          Wavly operates through Meta&apos;s WhatsApp Business API. We are{" "}
+          Wavly operates through Telegram&apos;s Bot API. We are{" "}
           <strong>not affiliated with, endorsed by, or sponsored by</strong>{" "}
-          Meta, WhatsApp, or any of their related entities.
+          Telegram or any of its related entities.
         </p>
         <ul>
           <li>
-            Our service depends on WhatsApp&apos;s API availability and
+            Our service depends on Telegram&apos;s API availability and
             policies, which can change without our control
           </li>
           <li>
-            We cannot guarantee continuous service if Meta modifies its
+            We cannot guarantee continuous service if Telegram modifies its
             policies or restricts our API access
           </li>
           <li>
             We are not responsible for account suspensions, bans, or
-            restrictions imposed by Meta on your WhatsApp Business account
+            restrictions imposed by Telegram on your bot
           </li>
           <li>
             We strongly recommend keeping a backup communication channel for
@@ -110,8 +110,8 @@ export default function DisclaimerPage() {
       <section id="third-party">
         <h2>Third-Party Services</h2>
         <p>
-          Wavly integrates with third-party services — including Meta
-          (WhatsApp), payment processors, hosting providers, and AI providers.
+          Wavly integrates with third-party services — including Telegram,
+          payment processors, hosting providers, and AI providers.
           We are not responsible for:
         </p>
         <ul>

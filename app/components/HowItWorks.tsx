@@ -11,9 +11,9 @@ type Step = {
 const steps: Step[] = [
   {
     number: "01",
-    title: "Connect your WhatsApp",
+    title: "Connect your Telegram bot",
     description:
-      "Link your business WhatsApp number in two minutes. No new app, no new number — your customers keep chatting the same way.",
+      "Create a free bot with BotFather and paste its token into Wavly. Takes two minutes — no code, no complex setup.",
     badge: "2 min setup",
     icon: (
       <svg

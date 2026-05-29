@@ -4,7 +4,6 @@ import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import { DashboardNav } from "../components/DashboardNav";
 import { Reveal } from "../components/Reveal";
-import { Tilt3D } from "../components/Tilt3D";
 
 type Plan = {
   name: string;
@@ -19,23 +18,24 @@ type Plan = {
   badge?: string;
   highlight?: boolean;
   accent?: "forest" | "gold";
+  bonus?: { title: string; desc: string; worth: string };
 };
 
 const plans: Plan[] = [
   {
     name: "Monthly",
     tagline: "Best for testing the waters.",
-    price: "₹999",
+    price: "₹2,999",
     period: "per month",
     cta: "Upgrade to Monthly",
     ctaHref: "#",
     features: [
       "Unlimited smart auto-replies",
-      "Appointment booking on WhatsApp",
+      "Appointment booking on Telegram",
       "Smart reminders (1 hr & 30 min)",
       "Centralized inbox",
       "Basic analytics",
-      "2 WhatsApp numbers",
+      "2 Telegram bots",
       "Email support",
       "Cancel anytime",
     ],
@@ -43,10 +43,10 @@ const plans: Plan[] = [
   {
     name: "Yearly",
     tagline: "Most owners pick this — and stay.",
-    price: "₹7,999",
+    price: "₹27,999",
     period: "per year",
-    savings: "Save ₹3,989",
-    monthlyEquivalent: "Just ₹667/month",
+    savings: "Save ₹7,989",
+    monthlyEquivalent: "Just ₹2,333/month",
     cta: "Upgrade to Yearly",
     ctaHref: "#",
     features: [
@@ -55,7 +55,7 @@ const plans: Plan[] = [
       "Payment reminders & follow-ups",
       "Full customer CRM",
       "Advanced analytics",
-      "5 WhatsApp numbers",
+      "5 Telegram bots",
       "Priority support",
       "Custom branding",
     ],
@@ -66,15 +66,15 @@ const plans: Plan[] = [
   {
     name: "Lifetime",
     tagline: "Pay once. Use forever. For founders who commit.",
-    price: "₹19,999",
+    price: "₹84,999",
     period: "one-time",
-    savings: "Pays for itself in 20 months",
+    savings: "Pays for itself in ~3 years",
     cta: "Get Lifetime",
     ctaHref: "#",
     features: [
       "Everything in Yearly",
       "All future updates included",
-      "Unlimited WhatsApp numbers",
+      "Unlimited Telegram bots",
       "1-on-1 onboarding call",
       "Founder badge in dashboard",
       "Lifetime priority support",
@@ -83,6 +83,11 @@ const plans: Plan[] = [
     ],
     badge: "Best Value",
     accent: "gold",
+    bonus: {
+      title: "Free Lovable Pro included",
+      desc: "Build your business website with AI — on us.",
+      worth: "Worth $25",
+    },
   },
 ];
 
@@ -97,7 +102,7 @@ const compareRows: Row[] = [
   { label: "Appointment booking", values: [<Check key="1" />, <Check key="2" />, <Check key="3" />] },
   { label: "Smart reminders", values: [<Check key="4" />, <Check key="5" />, <Check key="6" />] },
   { label: "Centralized inbox", values: [<Check key="7" />, <Check key="8" />, <Check key="9" />] },
-  { label: "WhatsApp numbers", values: ["2", "5", "Unlimited"] },
+  { label: "Telegram bots", values: ["2", "5", "Unlimited"] },
 
   { category: "Advanced", label: "AI assistant inside dashboard", values: [<Cross key="10" />, <Check key="11" />, <Check key="12" />] },
   { label: "Payment reminders", values: [<Cross key="13" />, <Check key="14" />, <Check key="15" />] },
@@ -192,9 +197,7 @@ export default function UpgradePage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-5 items-stretch">
               {plans.map((plan, i) => (
                 <Reveal key={plan.name} delay={120 + i * 110}>
-                  <Tilt3D max={4} perspective={1400}>
-                    <PriceCard plan={plan} />
-                  </Tilt3D>
+                  <PriceCard plan={plan} />
                 </Reveal>
               ))}
             </div>
@@ -344,10 +347,10 @@ function PriceCard({ plan }: { plan: Plan }) {
   const isHighlight = plan.highlight;
   return (
     <div
-      className={`relative flex flex-col h-full rounded-3xl p-8 lg:p-9 transition-all duration-500 ease-out hover:-translate-y-1.5 ${
+      className={`relative flex flex-col h-full rounded-3xl p-8 lg:p-9 ${
         isHighlight
-          ? "bg-[var(--color-forest)] text-[var(--color-cream-soft)] shadow-[0_30px_60px_-30px_rgba(20,58,47,0.55)] lg:scale-[1.04] hover:shadow-[0_42px_80px_-30px_rgba(20,58,47,0.65)]"
-          : "bg-[var(--color-cream-soft)] border border-[var(--color-border-soft)] text-[var(--color-ink)] hover:border-[var(--color-border)] hover:shadow-[0_24px_50px_-22px_rgba(20,33,28,0.25)]"
+          ? "bg-[var(--color-forest)] text-[var(--color-cream-soft)] shadow-[0_30px_60px_-30px_rgba(20,58,47,0.55)] lg:scale-[1.04]"
+          : "bg-[var(--color-cream-soft)] border border-[var(--color-border-soft)] text-[var(--color-ink)] shadow-[0_12px_36px_-20px_rgba(20,33,28,0.2)]"
       }`}
     >
       {plan.badge && (
@@ -440,9 +443,29 @@ function PriceCard({ plan }: { plan: Plan }) {
         ))}
       </ul>
 
+      {plan.bonus && (
+        <div className="mt-5 rounded-2xl border border-[var(--color-gold)]/45 bg-[var(--color-gold)]/12 p-4">
+          <div className="flex items-center gap-2">
+            <span className="text-[var(--color-gold)]"><GiftIcon /></span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-gold)]">
+              Free bonus
+            </span>
+            <span className="ml-auto rounded-full bg-[var(--color-gold)] px-2 py-0.5 text-[10px] font-bold text-white">
+              {plan.bonus.worth}
+            </span>
+          </div>
+          <div className="mt-2 text-sm font-medium text-[var(--color-ink)]">
+            {plan.bonus.title}
+          </div>
+          <div className="text-xs text-[var(--color-ink-soft)] mt-0.5">
+            {plan.bonus.desc}
+          </div>
+        </div>
+      )}
+
       <Link
         href={plan.ctaHref}
-        className={`mt-8 group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-all hover:-translate-y-0.5 ${
+        className={`mt-6 group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-all hover:-translate-y-0.5 ${
           isHighlight
             ? "bg-[var(--color-cream-soft)] text-[var(--color-forest-deep)] hover:bg-white shadow-[0_8px_22px_-6px_rgba(255,255,255,0.3)]"
             : "bg-[var(--color-forest)] text-[var(--color-cream-soft)] hover:bg-[var(--color-forest-deep)] shadow-[0_6px_20px_-6px_rgba(20,58,47,0.45)]"
@@ -451,11 +474,41 @@ function PriceCard({ plan }: { plan: Plan }) {
         {plan.cta}
         <ArrowRight />
       </Link>
+      <a
+        href={`mailto:billing@wavly.in?subject=${encodeURIComponent(`Payment for Wavly ${plan.name}`)}`}
+        className={`mt-2.5 inline-flex w-full items-center justify-center gap-1.5 rounded-full border px-5 py-2.5 text-xs font-medium transition-colors ${
+          isHighlight
+            ? "border-[var(--color-cream-soft)]/30 text-[var(--color-cream-soft)] hover:bg-[var(--color-cream-soft)]/10"
+            : "border-[var(--color-border)] text-[var(--color-ink-soft)] hover:border-[var(--color-forest)] hover:text-[var(--color-forest)]"
+        }`}
+      >
+        <ChatBubbleIcon />
+        Contact support for payment
+      </a>
     </div>
   );
 }
 
 /* ----------------- Icons ----------------- */
+
+function ChatBubbleIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
+      <path d="M21 11.5a8.5 8.5 0 11-3.4-6.8" />
+      <path d="M21 4v4h-4" />
+    </svg>
+  );
+}
+
+function GiftIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+      <rect x="3" y="8" width="18" height="13" rx="1" />
+      <path d="M12 8v13M3 12h18" />
+      <path d="M7.5 8a2.5 2.5 0 010-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 010 5" />
+    </svg>
+  );
+}
 
 function Check() {
   return (

@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Logo } from "../components/Logo";
+import { updateProfile } from "../../lib/supabase/auth";
+import { isSupabaseConfigured } from "../../lib/supabase/client";
 
 type BusinessType =
   | "coach"
@@ -100,7 +102,7 @@ const struggleOptions: {
   {
     id: "overwhelm",
     label: "Just too much going on",
-    hint: "WhatsApp is eating my whole day",
+    hint: "Telegram is eating my whole day",
   },
 ];
 
@@ -119,7 +121,7 @@ const struggleSentence: Record<Struggle, string> = {
   followups: "forgetting to follow up with customers",
   missing: "missing messages and losing customers",
   payments: "chasing payments and reminders",
-  overwhelm: "feeling overwhelmed by WhatsApp every day",
+  overwhelm: "feeling overwhelmed by Telegram every day",
 };
 
 type Automation = {
@@ -147,7 +149,7 @@ const struggleAutomations: Record<Struggle, Automation[]> = {
     {
       title: "Appointment Booking",
       description:
-        "Customers book on WhatsApp. Wavly checks your calendar and confirms.",
+        "Customers book on Telegram. Wavly checks your calendar and confirms.",
       icon: <CalendarIcon />,
     },
     {
@@ -245,9 +247,23 @@ export default function OnboardingPage() {
     setStep((s) => Math.max(s - 1, 1));
   }
 
-  function finish() {
-    if (typeof window !== "undefined" && trimmedName) {
-      window.localStorage.setItem("wavly.userName", trimmedName);
+  async function finish() {
+    if (typeof window !== "undefined") {
+      if (trimmedName) window.localStorage.setItem("wavly.userName", trimmedName);
+      if (businessType) window.localStorage.setItem("wavly.businessType", businessType);
+      if (struggle) window.localStorage.setItem("wavly.struggle", struggle);
+    }
+    // Persist to the database when Supabase is configured.
+    if (isSupabaseConfigured()) {
+      try {
+        await updateProfile({
+          full_name: trimmedName || null,
+          business_type: businessType,
+          struggle: struggle,
+        });
+      } catch {
+        // Non-blocking — localStorage already has it; continue to dashboard.
+      }
     }
     router.push("/dashboard");
   }
@@ -524,7 +540,7 @@ function StepStruggle({
       <h2 className="mt-3 text-2xl sm:text-3xl tracking-tight text-[var(--color-ink)]">
         What&apos;s your biggest struggle with{" "}
         <span className="font-display italic text-[var(--color-forest)]">
-          WhatsApp
+          Telegram
         </span>{" "}
         right now?
       </h2>
@@ -719,13 +735,13 @@ function StepComplete({ firstName }: { firstName: string }) {
         {firstName ? `You're all set, ${firstName}.` : "You're all set."}
       </h2>
       <p className="mt-3 text-base text-[var(--color-ink-soft)] leading-relaxed max-w-md mx-auto">
-        Your Wavly workspace is ready. Connect your WhatsApp, turn on your
+        Your Wavly workspace is ready. Connect your Telegram, turn on your
         first automations, and watch your inbox calm down.
       </p>
 
       <div className="mt-8 mx-auto max-w-md grid grid-cols-1 gap-2.5 text-left">
         {[
-          "Connect your WhatsApp number",
+          "Connect your Telegram bot",
           "Turn on your suggested automations",
           "Invite your team (optional)",
         ].map((step, i) => (

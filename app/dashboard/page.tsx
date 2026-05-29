@@ -34,10 +34,10 @@ type Activity = {
 
 const stats: Stat[] = [
   {
-    label: "Connected numbers",
+    label: "Connected bots",
     value: 2,
     icon: <PhoneIcon />,
-    hint: "Verified WhatsApp lines",
+    hint: "Active Telegram bots",
     trendData: [1, 1, 1, 2, 2, 2, 2],
   },
   {
@@ -74,8 +74,8 @@ const quickActions: QuickAction[] = [
     icon: <BoltIcon />,
   },
   {
-    title: "Connect new number",
-    description: "Add another WhatsApp line to your workspace.",
+    title: "Connect new bot",
+    description: "Add another Telegram bot to your workspace.",
     href: "/connect",
     icon: <PhoneIcon />,
   },

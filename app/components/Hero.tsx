@@ -10,6 +10,7 @@ export function Hero() {
       >
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[720px] w-[720px] rounded-full bg-[var(--color-gold-soft)]/25 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-[520px] w-[520px] rounded-full bg-[var(--color-forest-soft)]/10 blur-3xl" />
+        <div className="absolute top-20 right-[8%] h-[420px] w-[420px] rounded-full bg-[var(--color-tg)]/10 blur-3xl" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
@@ -24,7 +25,7 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-forest)] opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-forest)]" />
               </span>
-              AI WhatsApp Automation · Built for India
+              AI Telegram Automation · Built for India
             </div>
 
             <h1
@@ -42,7 +43,7 @@ export function Hero() {
               className="animate-hero-rise mt-7 max-w-xl text-base sm:text-lg text-[var(--color-ink-soft)] leading-relaxed"
               style={{ animationDelay: "240ms" }}
             >
-              Wavly is the AI assistant that handles your WhatsApp — replying
+              Wavly is the AI assistant that handles your Telegram — replying
               instantly, booking appointments, sending reminders, and chasing
               payments. Save 10+ hours every week.
             </p>
@@ -211,7 +212,7 @@ function HeroVisual() {
             Wavly AI is handling this chat
           </div>
           <div className="text-[10px] text-[var(--color-muted)]">
-            via WhatsApp
+            via Telegram
           </div>
         </div>
       </div>

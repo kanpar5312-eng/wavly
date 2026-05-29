@@ -17,12 +17,12 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Wavly — Automate Your WhatsApp. Save Hours Every Week.",
+  title: "Wavly — Automate Your Telegram. Save Hours Every Week.",
   description:
-    "Wavly is an AI-powered WhatsApp automation platform for small businesses in India. Smart replies, appointment booking, reminders, and a centralized inbox — all in one dashboard.",
+    "Wavly is an AI-powered Telegram automation platform for small businesses in India. Smart replies, appointment booking, reminders, and a centralized inbox — all in one dashboard.",
   keywords: [
-    "WhatsApp automation",
-    "AI WhatsApp",
+    "Telegram automation",
+    "AI Telegram",
     "small business",
     "India",
     "appointment booking",

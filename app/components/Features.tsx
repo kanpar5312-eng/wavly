@@ -26,7 +26,7 @@ const features: Feature[] = [
   {
     title: "Appointment Booking",
     description:
-      "Customers book directly on WhatsApp. Wavly checks your calendar, picks a slot, confirms — all without you typing.",
+      "Customers book directly on Telegram. Wavly checks your calendar, picks a slot, confirms — all without you typing.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={iconClass}>
         <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -61,7 +61,7 @@ const features: Feature[] = [
   {
     title: "Customer Management",
     description:
-      "A clean CRM built around WhatsApp. Tag customers, track history, and follow up at the right time.",
+      "A clean CRM built around Telegram. Tag customers, track history, and follow up at the right time.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={iconClass}>
         <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
@@ -118,7 +118,7 @@ export function Features() {
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl tracking-tight text-[var(--color-ink)]">
               Everything you need to run your business{" "}
               <span className="font-display italic text-[var(--color-forest)]">
-                on WhatsApp
+                on Telegram
               </span>
             </h2>
           </Reveal>

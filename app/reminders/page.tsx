@@ -225,7 +225,7 @@ export default function RemindersPage() {
                 </span>
               </h1>
               <p className="mt-3 max-w-2xl text-sm text-[var(--color-ink-soft)] leading-relaxed">
-                Wavly automatically sends WhatsApp reminders before every
+                Wavly automatically sends Telegram reminders before every
                 appointment and asks customers to confirm. Set it once — your
                 no-shows drop, your calendar stays full.
               </p>
@@ -278,7 +278,7 @@ export default function RemindersPage() {
                     Smart Reminders automation
                   </div>
                   <div className="mt-1 text-sm text-[var(--color-ink-soft)]">
-                    Sends reminders + confirmation requests on WhatsApp before
+                    Sends reminders + confirmation requests on Telegram before
                     every booked appointment.
                   </div>
                 </div>
@@ -430,7 +430,7 @@ export default function RemindersPage() {
                   Live preview
                 </div>
                 <h3 className="mt-2 text-base font-medium text-[var(--color-ink)]">
-                  How it looks on WhatsApp
+                  How it looks on Telegram
                 </h3>
 
                 <div className="mt-4 rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 shadow-[0_22px_50px_-22px_rgba(20,33,28,0.25)] overflow-hidden">

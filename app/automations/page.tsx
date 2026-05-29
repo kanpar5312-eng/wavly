@@ -32,7 +32,7 @@ const initialAutomations: Automation[] = [
     id: "a-1",
     name: "Smart Booking Reminders",
     description:
-      "Sends WhatsApp reminders 1 hour and 30 minutes before every appointment.",
+      "Sends Telegram reminders 1 hour and 30 minutes before every appointment.",
     trigger: "1 hr before any booking",
     icon: <BellIcon />,
     active: true,
@@ -150,11 +150,37 @@ const templates: Template[] = [
   },
 ];
 
+const CATEGORY_OPTIONS = ["Auto-Reply", "Bookings", "Reminders", "Payments", "Onboarding", "Promotions"] as const;
+
+function iconForCategory(cat: string): React.ReactNode {
+  switch (cat) {
+    case "Bookings":
+      return <CalendarIcon />;
+    case "Reminders":
+      return <BellIcon />;
+    case "Payments":
+      return <RupeeIcon />;
+    case "Onboarding":
+      return <SparkleIcon />;
+    case "Promotions":
+      return <GiftIcon />;
+    default:
+      return <BoltIcon />;
+  }
+}
+
 export default function AutomationsPage() {
   const [userName, setUserName] = useState<string | undefined>(undefined);
   const [automations, setAutomations] = useState(initialAutomations);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+
+  // Builder modal state
+  const [builderOpen, setBuilderOpen] = useState(false);
+  const [bName, setBName] = useState("");
+  const [bCategory, setBCategory] = useState<string>("Auto-Reply");
+  const [bTrigger, setBTrigger] = useState("");
+  const [bMessage, setBMessage] = useState("");
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -192,11 +218,43 @@ export default function AutomationsPage() {
   }
 
   function useTemplate(name: string) {
-    showToast(`Adding "${name}" to your automations…`);
+    // Pre-fill the builder from a template and open it
+    setBName(name);
+    setBCategory(
+      /book/i.test(name) ? "Bookings" :
+      /payment/i.test(name) ? "Payments" :
+      /reminder|confirm/i.test(name) ? "Reminders" :
+      /welcome|follow/i.test(name) ? "Onboarding" :
+      /birthday|offer/i.test(name) ? "Promotions" : "Auto-Reply"
+    );
+    setBTrigger("");
+    setBMessage("");
+    setBuilderOpen(true);
   }
 
   function createNew() {
-    showToast("Opening automation builder…");
+    setBName("");
+    setBCategory("Auto-Reply");
+    setBTrigger("");
+    setBMessage("");
+    setBuilderOpen(true);
+  }
+
+  function saveAutomation() {
+    if (!bName.trim()) return;
+    const newAuto: Automation = {
+      id: `a-${Date.now()}`,
+      name: bName.trim(),
+      description: bMessage.trim() || "Custom automation created by you.",
+      trigger: bTrigger.trim() || "Custom trigger",
+      icon: iconForCategory(bCategory),
+      active: true,
+      uses: "Just created",
+      category: bCategory,
+    };
+    setAutomations((prev) => [newAuto, ...prev]);
+    setBuilderOpen(false);
+    showToast(`"${newAuto.name}" created and turned on`);
   }
 
   const activeCount = automations.filter((a) => a.active).length;
@@ -249,13 +307,15 @@ export default function AutomationsPage() {
 
             <Reveal delay={120}>
               <div className="flex items-center gap-3">
-                <div className="hidden sm:inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-cream-soft)] px-4 py-2 text-xs text-[var(--color-ink-soft)]">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-forest)] opacity-70" />
-                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-forest)]" />
-                  </span>
-                  {activeCount} active · {automations.length} total
-                </div>
+                <Link
+                  href="/templates"
+                  className="btn-press hidden sm:inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-cream-soft)] px-4 py-2.5 text-sm font-medium text-[var(--color-ink-soft)] hover:border-[var(--color-forest)] hover:text-[var(--color-forest)] transition-colors"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                    <rect x="4" y="4" width="7" height="7" rx="1" /><rect x="13" y="4" width="7" height="7" rx="1" /><rect x="4" y="13" width="7" height="7" rx="1" /><rect x="13" y="13" width="7" height="7" rx="1" />
+                  </svg>
+                  Templates
+                </Link>
                 <button
                   onClick={createNew}
                   className="btn-press group inline-flex items-center gap-2 rounded-full bg-[var(--color-forest)] px-5 py-3 text-sm font-medium text-[var(--color-cream-soft)] hover:bg-[var(--color-forest-deep)] hover:-translate-y-0.5 shadow-[0_8px_22px_-6px_rgba(20,58,47,0.5)] transition-all"
@@ -366,6 +426,109 @@ export default function AutomationsPage() {
           </Reveal>
         </div>
       </main>
+
+      {/* Builder modal */}
+      {builderOpen && (
+        <div className="fixed inset-0 z-[60] flex items-start justify-center px-4 pt-[8vh] sm:pt-[10vh]">
+          <div
+            className="absolute inset-0 bg-[var(--color-ink)]/30 backdrop-blur-sm animate-fade-up"
+            onClick={() => setBuilderOpen(false)}
+          />
+          <div className="relative w-full max-w-lg rounded-3xl border border-[var(--color-border)] bg-[var(--color-cream-soft)] shadow-[0_40px_100px_-30px_rgba(20,33,28,0.5)] overflow-hidden animate-fade-up">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--color-border-soft)]">
+              <div className="flex items-center gap-2.5">
+                <div className="h-9 w-9 rounded-xl bg-[var(--color-forest)] text-[var(--color-cream-soft)] flex items-center justify-center">
+                  <BoltIcon />
+                </div>
+                <div>
+                  <div className="text-[10px] uppercase tracking-[0.16em] text-[var(--color-gold)] font-medium">
+                    New automation
+                  </div>
+                  <div className="text-sm font-medium text-[var(--color-ink)]">Build your workflow</div>
+                </div>
+              </div>
+              <button onClick={() => setBuilderOpen(false)} aria-label="Close" className="text-[var(--color-muted)] hover:text-[var(--color-forest)]">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M6 6l12 12M6 18L18 6" /></svg>
+              </button>
+            </div>
+
+            <div className="px-6 py-5 space-y-4 max-h-[64vh] overflow-y-auto">
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-medium tracking-wide text-[var(--color-ink-soft)]">Name</label>
+                <input
+                  value={bName}
+                  onChange={(e) => setBName(e.target.value)}
+                  placeholder="e.g. Saturday booking reminder"
+                  autoFocus
+                  className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2.5 text-sm text-[var(--color-ink)] placeholder:text-[var(--color-muted)]/70 outline-none focus:border-[var(--color-forest)] focus:ring-4 focus:ring-[var(--color-forest)]/10 transition-all"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-medium tracking-wide text-[var(--color-ink-soft)]">Category</label>
+                <div className="flex flex-wrap gap-1.5">
+                  {CATEGORY_OPTIONS.map((c) => (
+                    <button
+                      key={c}
+                      onClick={() => setBCategory(c)}
+                      className={`rounded-full px-3 py-1.5 text-xs font-medium transition-all ${
+                        bCategory === c
+                          ? "bg-[var(--color-forest)] text-[var(--color-cream-soft)]"
+                          : "bg-[var(--color-surface)] border border-[var(--color-border-soft)] text-[var(--color-ink-soft)] hover:border-[var(--color-forest)]/40"
+                      }`}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-medium tracking-wide text-[var(--color-ink-soft)]">Trigger</label>
+                <input
+                  value={bTrigger}
+                  onChange={(e) => setBTrigger(e.target.value)}
+                  placeholder='e.g. Keyword "price" · or "1 hour before booking"'
+                  className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2.5 text-sm text-[var(--color-ink)] placeholder:text-[var(--color-muted)]/70 outline-none focus:border-[var(--color-forest)] focus:ring-4 focus:ring-[var(--color-forest)]/10 transition-all"
+                />
+                <span className="text-[11px] text-[var(--color-muted)]">When should this automation fire?</span>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-medium tracking-wide text-[var(--color-ink-soft)]">Message</label>
+                <textarea
+                  value={bMessage}
+                  onChange={(e) => setBMessage(e.target.value)}
+                  rows={4}
+                  placeholder="What should the bot send? Use {{name}} to personalize."
+                  className="w-full resize-none rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-sm leading-relaxed text-[var(--color-ink)] placeholder:text-[var(--color-muted)]/60 outline-none focus:border-[var(--color-forest)] focus:ring-4 focus:ring-[var(--color-forest)]/10 transition-all"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 px-6 py-4 border-t border-[var(--color-border-soft)]">
+              <span className="text-[11px] text-[var(--color-muted)]">It&apos;ll turn on automatically once created.</span>
+              <div className="flex items-center gap-2">
+                <button onClick={() => setBuilderOpen(false)} className="btn-press rounded-full border border-[var(--color-border)] bg-[var(--color-cream-soft)] px-4 py-2 text-sm font-medium text-[var(--color-ink-soft)] hover:border-[var(--color-forest)] hover:text-[var(--color-forest)] transition-colors">
+                  Cancel
+                </button>
+                <button
+                  onClick={saveAutomation}
+                  disabled={!bName.trim()}
+                  className={`btn-press inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-all ${
+                    bName.trim()
+                      ? "bg-[var(--color-forest)] text-[var(--color-cream-soft)] hover:bg-[var(--color-forest-deep)]"
+                      : "bg-[var(--color-forest)]/40 text-[var(--color-cream-soft)]/70 cursor-not-allowed"
+                  }`}
+                >
+                  <PlusIcon />
+                  Create automation
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {toast && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-fade-up">

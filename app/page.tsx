@@ -4,6 +4,7 @@ import { LiveDemo } from "./components/LiveDemo";
 import { Features } from "./components/Features";
 import { HowItWorks } from "./components/HowItWorks";
 import { Pricing } from "./components/Pricing";
+import { Blog } from "./components/Blog";
 import { Faq } from "./components/Faq";
 import { Footer } from "./components/Footer";
 
@@ -17,6 +18,7 @@ export default function Home() {
         <Features />
         <HowItWorks />
         <Pricing />
+        <Blog />
         <Faq />
       </main>
       <Footer />

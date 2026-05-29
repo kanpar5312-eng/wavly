@@ -9,7 +9,7 @@ export function Footer() {
           <div className="col-span-2">
             <Logo />
             <p className="mt-4 max-w-xs text-sm text-[var(--color-ink-soft)] leading-relaxed">
-              AI WhatsApp automation built for small businesses in India.
+              AI Telegram automation built for small businesses in India.
               Reply faster, book more, and stop drowning in messages.
             </p>
           </div>
@@ -22,6 +22,7 @@ export function Footer() {
               <li><a href="/#features" className="text-[var(--color-ink-soft)] hover:text-[var(--color-forest)]">Features</a></li>
               <li><a href="/#how-it-works" className="text-[var(--color-ink-soft)] hover:text-[var(--color-forest)]">How it works</a></li>
               <li><Link href="/pricing" className="text-[var(--color-ink-soft)] hover:text-[var(--color-forest)]">Pricing</Link></li>
+              <li><Link href="/blog" className="text-[var(--color-ink-soft)] hover:text-[var(--color-forest)]">Blog</Link></li>
               <li><a href="/#faq" className="text-[var(--color-ink-soft)] hover:text-[var(--color-forest)]">FAQ</a></li>
             </ul>
           </div>
@@ -49,13 +50,11 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-6 border-t border-[var(--color-border-soft)] flex flex-col sm:flex-row justify-between gap-3 text-xs text-[var(--color-muted)]">
-          <div>© {new Date().getFullYear()} Wavly. Made with care in India.</div>
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-forest)] opacity-70" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-forest)]" />
-            </span>
-            Currently in private beta
+          <div>© {new Date().getFullYear()} Wavly. All rights reserved.</div>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="hover:text-[var(--color-forest)]">Privacy</Link>
+            <Link href="/terms" className="hover:text-[var(--color-forest)]">Terms</Link>
+            <a href="mailto:hello@wavly.in" className="hover:text-[var(--color-forest)]">hello@wavly.in</a>
           </div>
         </div>
       </div>

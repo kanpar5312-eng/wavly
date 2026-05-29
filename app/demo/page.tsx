@@ -103,7 +103,7 @@ export default function DemoPage() {
                   <span className="font-display italic text-[var(--color-forest)]">
                     automate
                   </span>{" "}
-                  your WhatsApp?
+                  your Telegram?
                 </h1>
               </Reveal>
 
@@ -111,7 +111,7 @@ export default function DemoPage() {
                 <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg text-[var(--color-ink-soft)] leading-relaxed">
                   Book a personalized demo call with us and see how Wavly can
                   save you hours every week. Or — even faster — chat with our
-                  bot on WhatsApp right now.
+                  bot on Telegram right now.
                 </p>
               </Reveal>
             </div>
@@ -123,10 +123,10 @@ export default function DemoPage() {
           <div className="mx-auto max-w-5xl px-6 lg:px-10">
             <Reveal>
               <Tilt3D max={3} perspective={1500}>
-                <div className="relative overflow-hidden rounded-3xl border border-[#25d366]/30 bg-gradient-to-br from-[#0d3a2e] via-[var(--color-forest)] to-[var(--color-forest-deep)] p-8 sm:p-12 text-[var(--color-cream-soft)] shadow-[0_30px_70px_-30px_rgba(20,58,47,0.6)]">
+                <div className="relative overflow-hidden rounded-3xl border border-[var(--color-forest)]/30 bg-gradient-to-br from-[var(--color-forest-deep)] via-[var(--color-forest)] to-[var(--color-forest-deep)] p-8 sm:p-12 text-[var(--color-cream-soft)] shadow-[0_30px_70px_-30px_rgba(20,58,47,0.6)]">
                   <div
                     aria-hidden
-                    className="pointer-events-none absolute -top-40 -right-32 h-[460px] w-[460px] rounded-full bg-[#25d366]/15 blur-3xl"
+                    className="pointer-events-none absolute -top-40 -right-32 h-[460px] w-[460px] rounded-full bg-[var(--color-forest)]/15 blur-3xl"
                   />
                   <div
                     aria-hidden
@@ -135,10 +135,10 @@ export default function DemoPage() {
 
                   <div className="relative grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 items-center">
                     <div>
-                      <div className="inline-flex items-center gap-2 rounded-full bg-[#25d366]/20 border border-[#25d366]/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#a7f0c5]">
+                      <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-forest)]/20 border border-[var(--color-forest)]/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--color-gold-soft)]">
                         <span className="relative flex h-1.5 w-1.5">
-                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#25d366] opacity-80" />
-                          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#25d366]" />
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-forest)] opacity-80" />
+                          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-forest)]" />
                         </span>
                         Recommended · 2 minutes
                       </div>
@@ -149,7 +149,7 @@ export default function DemoPage() {
                       >
                         Try our AI bot on{" "}
                         <span className="font-display italic text-[var(--color-gold-soft)]">
-                          WhatsApp
+                          Telegram
                         </span>{" "}
                         first
                       </h2>
@@ -161,14 +161,14 @@ export default function DemoPage() {
                       </p>
 
                       <a
-                        href="https://wa.me/919999999999?text=Hi%20Wavly!%20I%27d%20like%20to%20see%20a%20demo"
+                        href="https://t.me/WavlyDemoBot"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{ transform: "translateZ(40px)" }}
-                        className="btn-press group mt-7 inline-flex items-center gap-3 rounded-full bg-[#25d366] px-7 py-4 text-base font-medium text-white hover:bg-[#1ebe5a] hover:-translate-y-1 transition-all shadow-[0_18px_40px_-12px_rgba(37,211,102,0.6)]"
+                        className="btn-press group mt-7 inline-flex items-center gap-3 rounded-full bg-[var(--color-forest)] px-7 py-4 text-base font-medium text-white hover:bg-[var(--color-forest-deep)] hover:-translate-y-1 transition-all shadow-[0_18px_40px_-12px_rgba(20,58,47,0.5)]"
                       >
-                        <WhatsAppIcon />
-                        Chat with Wavly Bot on WhatsApp
+                        <TelegramIcon />
+                        Chat with Wavly Bot on Telegram
                         <svg
                           viewBox="0 0 24 24"
                           fill="none"
@@ -184,7 +184,7 @@ export default function DemoPage() {
 
                       <div className="mt-5 flex items-center gap-4 text-[11px] text-[var(--color-cream-soft)]/60">
                         <div className="flex items-center gap-1.5">
-                          <CheckMini /> Opens WhatsApp instantly
+                          <CheckMini /> Opens Telegram instantly
                         </div>
                         <div className="flex items-center gap-1.5">
                           <CheckMini /> No signup needed
@@ -198,9 +198,11 @@ export default function DemoPage() {
                       className="relative mx-auto hidden lg:block"
                     >
                       <div className="relative w-[260px] rounded-[2rem] border border-white/15 bg-[var(--color-forest-deep)]/50 backdrop-blur p-3 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.5)]">
-                        <div className="rounded-[1.5rem] bg-[#075e54] px-4 py-3 flex items-center gap-2.5">
-                          <div className="h-9 w-9 rounded-full bg-[#25d366] flex items-center justify-center text-white text-xs font-semibold">
-                            W
+                        <div className="rounded-[1.5rem] bg-gradient-to-r from-[var(--color-tg-deep)] to-[var(--color-tg)] px-4 py-3 flex items-center gap-2.5">
+                          <div className="h-9 w-9 rounded-full bg-white/20 flex items-center justify-center text-white">
+                            <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                              <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" />
+                            </svg>
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="text-[12px] font-medium text-white">
@@ -211,7 +213,7 @@ export default function DemoPage() {
                             </div>
                           </div>
                         </div>
-                        <div className="rounded-b-[1.5rem] bg-[#0b3d36] p-3 space-y-2 min-h-[180px]">
+                        <div className="rounded-b-[1.5rem] bg-[var(--color-forest-deep)] p-3 space-y-2 min-h-[180px]">
                           <ChatBubble side="bot">Hey 👋 I&apos;m Wavly. Want to see what I can do?</ChatBubble>
                           <ChatBubble side="you">Yes!</ChatBubble>
                           <ChatBubble side="bot">Perfect. Tell me your business type and I&apos;ll show you how I&apos;d save you time 🌿</ChatBubble>
@@ -631,7 +633,7 @@ function ChatBubble({
   if (side === "bot") {
     return (
       <div className="flex justify-start">
-        <div className="max-w-[85%] rounded-xl rounded-bl-sm bg-white/95 px-3 py-2 text-[11px] leading-relaxed text-[#0b3d36] shadow-sm">
+        <div className="max-w-[85%] rounded-xl rounded-bl-sm bg-white/95 px-3 py-2 text-[11px] leading-relaxed text-[var(--color-forest-deep)] shadow-sm">
           {children}
         </div>
       </div>
@@ -639,7 +641,7 @@ function ChatBubble({
   }
   return (
     <div className="flex justify-end">
-      <div className="max-w-[85%] rounded-xl rounded-br-sm bg-[#25d366] px-3 py-2 text-[11px] leading-relaxed text-white shadow-sm">
+      <div className="max-w-[85%] rounded-xl rounded-br-sm bg-[var(--color-tg)] px-3 py-2 text-[11px] leading-relaxed text-white shadow-sm">
         {children}
       </div>
     </div>
@@ -669,10 +671,10 @@ function svgProps() {
   };
 }
 
-function WhatsAppIcon() {
+function TelegramIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path d="M17.6 14.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.6.1c-.3-.2-1.2-.5-2.3-1.4-.9-.7-1.4-1.7-1.6-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.5 3.1 1.2 3.1.8 3.7.8.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 00-8.6 15l-1.4 5 5.2-1.4A10 10 0 1012 2z" />
+      <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" />
     </svg>
   );
 }
